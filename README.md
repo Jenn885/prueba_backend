@@ -3,7 +3,7 @@
 ## Endpoinst:
 ## Contrato 1.1
   url:
-  http://127.0.0.1:8000/employees/employee-items/ 
+  http://127.0.0.1:8000/employees/employee-items/ <br />
  request:
   {
     "gender_id": 1, 
@@ -16,7 +16,7 @@
  ## Contrato 1.2
  
  url:
-  http://127.0.0.1:8000/employees/worked-hours/ 
+  http://127.0.0.1:8000/employees/worked-hours/ <br />
   request:
   {
     "employee_id": 2, 
@@ -28,7 +28,7 @@
  ## Contrato 1.3
  
  url:
-  http://127.0.0.1:8000/employees/employee-jobs/ 
+  http://127.0.0.1:8000/employees/employee-jobs/ <br />
   request:
   
 {
@@ -38,7 +38,7 @@
  ## Contrato 1.4
  
  url:
-  http://127.0.0.1:8000/employees/total-worked-hours/ 
+  http://127.0.0.1:8000/employees/total-worked-hours/ <br />
   request:
   
 {
@@ -51,7 +51,7 @@
 ## Contrato 1.5
  
  url:
-  http://127.0.0.1:8000/employees/salary-payment/ 
+  http://127.0.0.1:8000/employees/salary-payment/ <br />
   request:
   
 {
