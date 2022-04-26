@@ -1,9 +1,8 @@
 from asyncio.windows_events import NULL
-from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import EmployeeItemSerializer, GenderItemSerializer, WorkedHoursItemSerializer, WorkedHoursItemSerializerList
+from .serializers import EmployeeItemSerializer, GenderItemSerializer, WorkedHoursItemSerializer, WorkedHoursItemSerializerList,GenderItemSerializerSimple
 from .models import Employee, Gender, WorkedHours
 from Jobs.models import Job
 from Jobs.serializers import JobItemSerializer
@@ -12,7 +11,6 @@ from datetime import datetime
 import time
 from datetime import timedelta, date
 from dateutil import relativedelta
-import json 
 
 # Create your views here.
 class EmployeeItemViews(APIView):
@@ -216,8 +214,8 @@ class SalaryPaymentItemViews(APIView):
         
 
 
-class GenderItemViews(APIView):
 
+class GenderListItemViews(APIView):
     def get(self, request, id=None):
         if id:
             item = Gender.objects.get(id=id)
@@ -227,3 +225,36 @@ class GenderItemViews(APIView):
         items = Gender.objects.all()
         serializer = GenderItemSerializer(items, many=True)
         return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+
+           
+class GenderItemsViews(APIView):
+     def post(self, request):
+        
+        serializer = GenderItemSerializerSimple(data=request.data)
+        name = request.data['name']
+        
+        if Gender.objects.filter(name=name).exists():
+         
+            return Response({ "id": None, "sucess": False}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            if serializer.is_valid():
+                serializer.save()
+                return Response({ "id": serializer.data['id'], "sucess": True}, status=status.HTTP_200_OK)
+                
+            else:
+                return Response({ "id": serializer.errors, "sucess": False}, status=status.HTTP_400_BAD_REQUEST)
+
+    
+
+class EmployeesListItemViews(APIView):
+    
+    def get(self, request, id=None):
+        if id:
+            item = Employee.objects.get(id=id)
+            serializer = EmployeeItemSerializer(item)
+            return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+
+        items = Employee.objects.all()
+        serializer = EmployeeItemSerializer(items, many=True)
+        return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+    

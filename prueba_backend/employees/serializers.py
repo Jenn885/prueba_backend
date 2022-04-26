@@ -30,3 +30,9 @@ class WorkedHoursItemSerializerList(serializers.ModelSerializer):
         model = WorkedHours
         fields = ['employee_id', 'worked_hours','worked_date']
 
+
+class GenderItemSerializerSimple(serializers.ModelSerializer):
+    class Meta:
+        model = Gender
+        fields = ['id','name']
+
