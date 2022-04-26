@@ -4,7 +4,6 @@
 ## Contrato 1.1
   url:
   http://127.0.0.1:8000/employees/employee-items/ 
- 
  request:
   {
     "gender_id": 1, 
